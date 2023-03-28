@@ -1,2 +1,2 @@
 # st
-my notes, my brain, my reference documentation
+This is for consolidating work notes and helpful commands.
