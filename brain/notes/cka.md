@@ -11,11 +11,11 @@
   - kubelet is an agent that runs on each node, also reports container status and info
   - container runtime, not built into k8s, but multiple kinds are supported for use (like docker, containerd)
   - kube proxy is a network proxy, runs on each node and does networking
-  - to see which node each pod is running on: kubectl get pods -o wide
 
 ## Commands
 - use -n to return results from a single namespace: kubectl get pods -n example-namespace
 - use --all-namespaces to return results from all namespaces: kubectl get pods --all-namespaces
+- to see which node each pod is running on: kubectl get pods -o wide
 
 ## Kubernetes Management
 - high availability, multiple instances of control plane
