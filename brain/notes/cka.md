@@ -53,3 +53,7 @@
       - sudo systemctl daemon-reload
       - sudo systemctl restart kubelet
     - from the control plane node, uncordon the node: kubectl uncordon <node name>
+- backup and restore for etcd cluster data
+  - backup etcd using etcdctl: etcdctl --endpoints <endpoint> snapshot save <file name>
+  - restore etcd from backup: etcdctl snapshot restore <file name>
+  - the restore command spins up a new cluster
