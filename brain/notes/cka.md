@@ -57,3 +57,12 @@
   - backup etcd using etcdctl: etcdctl --endpoints <endpoint> snapshot save <file name>
   - restore etcd from backup: etcdctl snapshot restore <file name>
   - the restore command spins up a new cluster
+
+## Working with kubectl
+- retrieve an obj: kubectl get <object type> <object name> -o <output format> --sort-by <JSON Path>
+- obj details: kubectl describe
+- creating objects: kubectl create
+- create or modify: kubectl apply
+- destroy: kubectl delete
+- run commands inside containers: kubectl exec <pod name> -c <container name>
+
