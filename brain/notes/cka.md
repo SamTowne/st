@@ -65,4 +65,8 @@
 - create or modify: kubectl apply
 - destroy: kubectl delete
 - run commands inside containers: kubectl exec <pod name> -c <container name>
+- declarative commands: object defined in data structure like yaml or json
+- imperative commands: object defined using kubectl commands with a lot of flags for params
+  - using imperative command to get boilerplate config for a deployment: kubectl create deployment my-deployment --image=nginx --dry-run -o yaml
+  - use the --record flag to add a modification record to an object, the command gets added to the annotation section of the object's metadata as a change-cause record
 
