@@ -70,3 +70,54 @@
   - using imperative command to get boilerplate config for a deployment: kubectl create deployment my-deployment --image=nginx --dry-run -o yaml
   - use the --record flag to add a modification record to an object, the command gets added to the annotation section of the object's metadata as a change-cause record
 
+## Role Based Access Control (RBAC)
+- RBAC allows you to control what users are allowed to do and access within the cluster
+- RBAC Objects
+  - 4 main objects
+    - Role: defines permissions within a particular namespace
+    - RoleBinding: binds a Role definition to an id or user
+    - ClusterRole: defines cluster-wide permissions not specific to a single namespace
+    - ClusterRoleBinding: binds a ClusterRole to an id or user
+  - permissions are strictly additive (there are no "deny" rules)
+  - this role example provides read access to the pods and logs in the default namespace
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/vi
+    kind: Role
+    metadata:
+      namespace: default
+      name: pod-reader
+    rules:
+    - apiGroups: [""]
+      resources: ["pods", "pods/log"]
+      verbs: ["get", "watch", "list"]
+    ```
+  - the RoleBinding for this role
+  - attaches the permission set from the role to the dev User
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/vi
+    kind: RoleBinding
+    metadata:
+      name: pod-reader
+      namespace: default
+    subjects:
+    - kind: User
+      name: dev
+      apiGroup: rbac.authorization.k8s.io
+    roleRef:
+      kind: Role
+      name: pod-reader
+      apiGroup: rbac.authorization.k8s.io
+    ```
+  - this ClusterRole policy grants read access to secrets in any particular namespace
+  - this would be an example of something that would most likely need strict binding restrictions
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      # "namespace" omitted because ClusterRoles are not namespaced
+      name: secret-reader
+    rules:
+    - apiGroups: [""]
+      resources: ["secrets"]
+      verbs: ["get", "watch", "list"]
+    ```
