@@ -121,3 +121,13 @@
       resources: ["secrets"]
       verbs: ["get", "watch", "list"]
     ```
+- service accounts
+  - service accounts are for the roles that get used by the services within the cluster
+  - yaml definition example
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: my-serviceaccount
+    ```
+  - access control is handled using the standard RBAC process of defining and binding roles to the ServiceAccount
