@@ -131,3 +131,13 @@
       name: my-serviceaccount
     ```
   - access control is handled using the standard RBAC process of defining and binding roles to the ServiceAccount
+
+## Inspecting Pod Resource Usage
+- using Kubernetes Metrics Server
+  - collects and provides metrics data
+  - metric server must be installed on the cluster
+  - verify by qerying its api: kubectl get --raw /apis.metrics.k8s.io/
+  - this allows use of kubectl top command: kubectl top pod <options>
+  - it can take a little bit of time after install of metrics server for data to start getitng returned
+  - also, takes a bit for new pods to show in the data results
+  - you can also see usage by node: kubectl top node
