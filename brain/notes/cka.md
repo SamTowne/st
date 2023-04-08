@@ -141,3 +141,71 @@
   - it can take a little bit of time after install of metrics server for data to start getitng returned
   - also, takes a bit for new pods to show in the data results
   - you can also see usage by node: kubectl top node
+
+## Pods and Containers
+- managing application configuration
+  - application configuration - the dynamic values passed into the containers (apps )at runtime
+  - config maps are a primary way to pass data to the containers (map of k:v)
+  - secrets are similar, but are treated as sensitive items (map of k:v)
+  - environment variables can be used to pass secrets and config maps
+    ```yaml
+    spec:
+      containers:
+      ...
+      - name: ENVVAR
+        valueFrom:
+          configMapKeyRef:
+            name: my-configmap
+            key: mykey
+    ```
+  - configuration volumes can be used to pass secrets and config maps in the form of mounted volumes
+    - this mounts a file system containing the secrets/config maps
+  - environment variables example
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadtata:
+      name: env-pod
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', 'echo "configmap: $CONFIGMAPVAR secret: $SECRETVAR"']
+        env:
+        - name: CONFIGMAPVAR
+          valueFrom:
+            configMapKeyRef:
+              name: my-configmap
+              key: key1
+        - name: SECRETVAR
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: secretkey1
+    ```
+  - using volumes + volumeMounts for config and secrets
+    ```yaml
+    ...
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', '-c', 'echo example']    
+        volumeMounts:
+        - name: configmap-volume
+          mountPath: /etc/config/configmap
+        - name: secret-volume
+          mountPath: /etc/config/secret
+      volumes:
+      - name: configmap-volume
+        configMap:
+          name: my-configmap
+      - name: secret-volume
+        secret:
+          secretName: my-secret
+    ```
+- managing container resources
+- monitoring container health with probes
+- building self-healing pods with restart policies
+- introducing init containers
+
