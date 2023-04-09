@@ -205,6 +205,8 @@
           secretName: my-secret
     ```
 - managing container resources
+  - resource requests: the scheduler investigates the available resources in a node before scheduling a pod
+  - resource limits: provide a way to limit the amout of resources containers can use, behavior of how this happens deponds the the container runtime but it may actually kill stuff attemptingt to run in the container
 - monitoring container health with probes
 - building self-healing pods with restart policies
 - introducing init containers
