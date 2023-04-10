@@ -265,5 +265,9 @@
           periodSeconds: 10
     ```
 - building self-healing pods with restart policies
+  - k8s can automatically restart containers when they failure
+  - restart policies allow you to customize this behavior
+  - there are 3 types of restart policies: always, OnFailure, and never
+    - always is the default value for container spec
 - introducing init containers
 
