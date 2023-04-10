@@ -208,6 +208,62 @@
   - resource requests: the scheduler investigates the available resources in a node before scheduling a pod
   - resource limits: provide a way to limit the amout of resources containers can use, behavior of how this happens deponds the the container runtime but it may actually kill stuff attemptingt to run in the container
 - monitoring container health with probes
+  - liveness probes allow you to automatically determine if a container app is in a healthy state
+  - startup probes run at container startup and determine once a app is succesffully started up
+  - readiness probes determine when a container is ready to accept requests
+  - exec probe example
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadtata:
+      name: liveness-pod
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', '-c', 'while true; do sleep 3600; done']
+        livenessProbe:
+          exec:
+            command: ["echo", "Hello, world"]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+    ```
+  - http get probe example
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadtata:
+      name: liveness-pod
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', '-c', 'while true; do sleep 3600; done']
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+    ```
+  - startup probe example
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadtata:
+      name: startup-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19.1
+        command: ['sh', '-c', 'while true; do sleep 3600; done']
+        startupProbe:
+          httpGet:
+            path: /
+            port: 80
+          failureThreshold: 30
+          periodSeconds: 10
+    ```
 - building self-healing pods with restart policies
 - introducing init containers
 
