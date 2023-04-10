@@ -301,3 +301,11 @@
     - populate data into a shared volume at startup
     - communicate with another service at startup
   - init containers are specified using a config block called initContainers
+
+## Advanced Pod Allocation
+- exploring k8s scheduling
+  - the kubernetes scheduler selects a suitable node for each pod
+  - it considers things like resources requests vs available node resources
+  - you can customize scheduling using node labels
+  - nodeSelector can be configured to limit which nodes a pod can be scheduled on
+  - nodeName can be used to bypass scheduling and assign a pod to a sepcific node
