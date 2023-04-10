@@ -269,5 +269,26 @@
   - restart policies allow you to customize this behavior
   - there are 3 types of restart policies: always, OnFailure, and never
     - always is the default value for container spec
+- multi-container pods
+  - a pod with more than one container is a multi-container pod
+  - it is best practice to keep containers in separate pods unless they need to share resources
+  - in a multi-container pod, the containers share resources such as network and storage
+  - often, secondary containers are used in situations where an app writes to file
+  - these are referred to as sidecars, as they help the primary container with something
+  - sometimes ssl termination is done using a sidecar
+  - example multi-container spec:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: multi-container-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      - name: redis
+        image: redis
+      - name: couchbase
+        image: couchbase
+    ```
 - introducing init containers
-
