@@ -292,3 +292,12 @@
         image: couchbase
     ```
 - introducing init containers
+  - init containers are containers that run once during the startup process of a pod
+  - a pod can have any number of init containers and they each run once, in order, to completion
+  - useful in keeping your main containers lighter and more secure by offloading startup tasks to a separate container
+  - example use cases
+    - cause a pod to wait for another k8s resource to be created before finishing startup
+    - perform sensitve startup steps securely outside of app contianers
+    - populate data into a shared volume at startup
+    - communicate with another service at startup
+  - init containers are specified using a config block called initContainers
