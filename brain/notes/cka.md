@@ -333,3 +333,9 @@
 	    image: nginx:1.19.1
       
     ```
+- using static pods
+  - a static pod is managed directly by the kubelet ona node instead of by the K8s API server
+  - they get created using yaml definition files that exist on the node directly (so that the api is not needed)
+  - for each static pod a mirror pod is created to do the communication with the k8s api (read only, cannot modify the pod viathe k8s api in the standard way)
+  - if you attempt to delete the pod using kubectl it will only delete the mirror pod, and then the mirror pod will get recreated again
+  - so, static pods are a way to have a pod that runs without a dependency on the k8s api / control plane node
