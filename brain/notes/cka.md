@@ -309,3 +309,27 @@
   - you can customize scheduling using node labels
   - nodeSelector can be configured to limit which nodes a pod can be scheduled on
   - nodeName can be used to bypass scheduling and assign a pod to a sepcific node
+- using DaemonSets
+  - a daemonset automatically runs a copy of a pod on each node
+  - this applies to new nodes that are created as well
+  - daemonsets respect normal scheduling rules such as node labels, taints
+  - example
+    ```yaml
+    apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      name: my-daemonset
+    spec:
+      selector:
+        matchLabels:
+          app: my-daemonset
+      template:
+        metadata:
+	  labels:
+	    app: my-daemonset
+	spec:
+	  containers:
+	  - name: nginx
+	    image: nginx:1.19.1
+      
+    ```
