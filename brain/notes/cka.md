@@ -348,3 +348,10 @@
     - update that yaml to change the replicas value
     - kubectl scale command can be used: kubectl scale <deployment> --replicas 3
   - if yaml was updated for scaling, apply to trigger: kubectl apply -f my-deployment.yml
+- managing rolling updates with deployments
+  - what is a rolling udpate?
+    - allow you to make changes to a deployment pods at a controlled rate, gradually replacing old pods with news pods. this allows you to update your pods without incurring downtime
+  - what is a rollback?
+    - if an update to a deployment causes a problem you can roll back to a previous working state
+  - to see state of a deployment: kubectl rollout status deployment/my-deployment
+  - you can update the underlying image: kubectl set image deployment/my-deployment nginx:nginx
