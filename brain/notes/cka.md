@@ -209,7 +209,7 @@
   - resource limits: provide a way to limit the amout of resources containers can use, behavior of how this happens deponds the the container runtime but it may actually kill stuff attemptingt to run in the container
 - monitoring container health with probes
   - liveness probes allow you to automatically determine if a container app is in a healthy state
-  - startup probes run at container startup and determine once a app is succesffully started up
+  - startup probes run at container startup and determine once a app is succesffully start
   - readiness probes determine when a container is ready to accept requests
   - exec probe example
     ```yaml
@@ -355,3 +355,13 @@
     - if an update to a deployment causes a problem you can roll back to a previous working state
   - to see state of a deployment: kubectl rollout status deployment/my-deployment
   - you can update the underlying image: kubectl set image deployment/my-deployment nginx:nginx
+
+## Networking
+- kubernetes network model
+  - a set of standards that defines how networking between pods behaves
+  - each pod has its own IP address within the cluster
+  - each ip address is unique within the cluster
+- cni plugins overview
+  - cni plugins are a type of kubernetes network plugin that provide network connectivity between pods according to the standard setby the kubernetes network model
+  - the calico network plugin is common
+
