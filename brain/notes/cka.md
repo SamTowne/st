@@ -364,4 +364,9 @@
 - cni plugins overview
   - cni plugins are a type of kubernetes network plugin that provide network connectivity between pods according to the standard setby the kubernetes network model
   - the calico network plugin is common
-
+- understanding k8s DNS
+  - the kubernetes virtual network includes a dns system to allow pods to locate other pods using domain names instead of by ip
+  - the dns components usually exist within the kube-system k8s namespace
+  - you can see the core system components by getting pods from the kube-system namespace: kubectl get pods -n kube-system
+  - this will likely show the pods running dns if a common setup is in use
+  - checking dns records for a specific pod: kubectl exec <name> -- nslookup <host>
