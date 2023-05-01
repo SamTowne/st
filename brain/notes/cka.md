@@ -370,3 +370,27 @@
   - you can see the core system components by getting pods from the kube-system namespace: kubectl get pods -n kube-system
   - this will likely show the pods running dns if a common setup is in use
   - checking dns records for a specific pod: kubectl exec <name> -- nslookup <host>
+- using network policies
+  - a network policy is an object that allws you to control the flow of network communication to and from pods
+  - podSelectors can be used to determine which pods in a namespace should have a network policy applied
+  - podSelectors use labels to select pods
+    ```yaml
+    podSelector:
+      matchLabels:
+        role: db
+    ```
+  - by default, pods are considered non-isolated and are open to all communication
+  - if any network policy selects a pod the pod is considered isolated and will only be open to traffic allowed by NetworkPolicies
+  - network policies can be applied to ingress, egress, or both directions of traffic
+  - from and to selectors
+    - from selects ingress traffic (incoming traffic)
+    - to selects egress traffic (outgoing traffic)
+  - namespaceSelector can be used to apply a rule to all pods in the namespace
+    ```yaml
+    spec:
+      ingress:
+        from:
+	- namespaceSelector:
+	  matchLabels:
+	    app: db
+    ```
