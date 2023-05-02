@@ -339,3 +339,12 @@
   - for each static pod a mirror pod is created to do the communication with the k8s api (read only, cannot modify the pod viathe k8s api in the standard way)
   - if you attempt to delete the pod using kubectl it will only delete the mirror pod, and then the mirror pod will get recreated again
   - so, static pods are a way to have a pod that runs without a dependency on the k8s api / control plane node
+
+## Deployments
+- scaling applications with deployments
+  - k8s is great at horizontal scaling (adding/removing total containers)
+  - the number of pods is controlled by the Replicas parameter
+  - how to scale a deployment
+    - update that yaml to change the replicas value
+    - kubectl scale command can be used: kubectl scale <deployment> --replicas 3
+  - if yaml was updated for scaling, apply to trigger: kubectl apply -f my-deployment.yml
