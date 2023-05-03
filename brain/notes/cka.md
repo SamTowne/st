@@ -394,3 +394,8 @@
 	  matchLabels:
 	    app: db
     ```
+
+## Services
+- a kubernetes service provides a way to expose an application running as a set of pods
+- endpoints are the backend entities to which services route traffic
+  - one way to determine which pods a service is routing traffic to is to take a look at that service's endpoints
