@@ -399,3 +399,24 @@
 - a kubernetes service provides a way to expose an application running as a set of pods
 - endpoints are the backend entities to which services route traffic
   - one way to determine which pods a service is routing traffic to is to take a look at that service's endpoints
+- each service has a type, and each service type determines how and where the service will expose your application
+  - clusterIP, NodePort, LoadBalancer, ExternalName
+- clusterIP services expose applications inside the cluster network, used when clients will be other pods within the cluster
+- nodeport expose applications outside the cluster network, used when the clients/apps/users are outside the cluster
+- loadbalancer expose applications outside the cluster network, used when an external load balancer are used
+- example yaml for nodeport ServiceType, this exposes the app's 80 listener externally over 30080
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+   name: svc-nodeport
+  spec:
+    type: NodePort
+    selector:
+      app: svc-example
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+        nodePort: 30080
+  ```
