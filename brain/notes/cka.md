@@ -420,3 +420,6 @@
         targetPort: 80
         nodePort: 30080
   ```
+- the kubernetes DNS assigns DNS names to services with the following format
+- service-name.napespace-name.svc.cluster-domain.example
+- a service's fully qualified domain name can be used to reach the service from within any namespace in the cluster
