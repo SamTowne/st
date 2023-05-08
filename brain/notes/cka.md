@@ -423,3 +423,21 @@
 - the kubernetes DNS assigns DNS names to services with the following format
 - service-name.napespace-name.svc.cluster-domain.example
 - a service's fully qualified domain name can be used to reach the service from within any namespace in the cluster
+- managing access from outside the cluster
+  - ingress is external clients -> ingress -> service
+  - an ingress is a kubernetes object that manages external access to services in the cluster
+  - ingress relies on installation of an ingress controller
+  - ingresses define a set of routing rules, each rule has a set of paths
+    ```yaml
+    spec:
+      rules:
+        http:
+	  paths:
+	  - path: /somepath
+	    pathtype: Prefix
+	    backend:
+	      service:
+	        name: my-service
+		port:
+		number: 80
+    ```
