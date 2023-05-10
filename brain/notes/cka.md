@@ -423,3 +423,9 @@
 - the kubernetes DNS assigns DNS names to services with the following format
 - service-name.napespace-name.svc.cluster-domain.example
 - a service's fully qualified domain name can be used to reach the service from within any namespace in the cluster
+
+## K8s Storage
+- the container file system is ephemeral. files on the container's file system exist only as long as the container exists.
+- volumes allow you to store data outside the container file system while allowing the container to access the data at runtime
+- persistent volumes allow you to treat storage as an abstract resource and consume it using your pods
+- volume types: nfs, cloud storage, config maps and secrets, a simple directory on the k8s node
