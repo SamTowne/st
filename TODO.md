@@ -1,0 +1,3 @@
+- [ ] clean up AWS account
+- [ ] fix basketball drill bot
+- [ ] refactor basketball drill bot (and rename it yuck)
