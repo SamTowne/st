@@ -209,7 +209,7 @@
   - resource limits: provide a way to limit the amout of resources containers can use, behavior of how this happens deponds the the container runtime but it may actually kill stuff attemptingt to run in the container
 - monitoring container health with probes
   - liveness probes allow you to automatically determine if a container app is in a healthy state
-  - startup probes run at container startup and determine once a app is succesffully started up
+  - startup probes run at container startup and determine once a app is succesffully start
   - readiness probes determine when a container is ready to accept requests
   - exec probe example
     ```yaml
@@ -348,3 +348,102 @@
     - update that yaml to change the replicas value
     - kubectl scale command can be used: kubectl scale <deployment> --replicas 3
   - if yaml was updated for scaling, apply to trigger: kubectl apply -f my-deployment.yml
+- managing rolling updates with deployments
+  - what is a rolling udpate?
+    - allow you to make changes to a deployment pods at a controlled rate, gradually replacing old pods with news pods. this allows you to update your pods without incurring downtime
+  - what is a rollback?
+    - if an update to a deployment causes a problem you can roll back to a previous working state
+  - to see state of a deployment: kubectl rollout status deployment/my-deployment
+  - you can update the underlying image: kubectl set image deployment/my-deployment nginx:nginx
+
+## Networking
+- kubernetes network model
+  - a set of standards that defines how networking between pods behaves
+  - each pod has its own IP address within the cluster
+  - each ip address is unique within the cluster
+- cni plugins overview
+  - cni plugins are a type of kubernetes network plugin that provide network connectivity between pods according to the standard setby the kubernetes network model
+  - the calico network plugin is common
+- understanding k8s DNS
+  - the kubernetes virtual network includes a dns system to allow pods to locate other pods using domain names instead of by ip
+  - the dns components usually exist within the kube-system k8s namespace
+  - you can see the core system components by getting pods from the kube-system namespace: kubectl get pods -n kube-system
+  - this will likely show the pods running dns if a common setup is in use
+  - checking dns records for a specific pod: kubectl exec <name> -- nslookup <host>
+- using network policies
+  - a network policy is an object that allws you to control the flow of network communication to and from pods
+  - podSelectors can be used to determine which pods in a namespace should have a network policy applied
+  - podSelectors use labels to select pods
+    ```yaml
+    podSelector:
+      matchLabels:
+        role: db
+    ```
+  - by default, pods are considered non-isolated and are open to all communication
+  - if any network policy selects a pod the pod is considered isolated and will only be open to traffic allowed by NetworkPolicies
+  - network policies can be applied to ingress, egress, or both directions of traffic
+  - from and to selectors
+    - from selects ingress traffic (incoming traffic)
+    - to selects egress traffic (outgoing traffic)
+  - namespaceSelector can be used to apply a rule to all pods in the namespace
+    ```yaml
+    spec:
+      ingress:
+        from:
+	- namespaceSelector:
+	  matchLabels:
+	    app: db
+    ```
+
+## Services
+- a kubernetes service provides a way to expose an application running as a set of pods
+- endpoints are the backend entities to which services route traffic
+  - one way to determine which pods a service is routing traffic to is to take a look at that service's endpoints
+- each service has a type, and each service type determines how and where the service will expose your application
+  - clusterIP, NodePort, LoadBalancer, ExternalName
+- clusterIP services expose applications inside the cluster network, used when clients will be other pods within the cluster
+- nodeport expose applications outside the cluster network, used when the clients/apps/users are outside the cluster
+- loadbalancer expose applications outside the cluster network, used when an external load balancer are used
+- example yaml for nodeport ServiceType, this exposes the app's 80 listener externally over 30080
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+   name: svc-nodeport
+  spec:
+    type: NodePort
+    selector:
+      app: svc-example
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+        nodePort: 30080
+  ```
+- the kubernetes DNS assigns DNS names to services with the following format
+- service-name.napespace-name.svc.cluster-domain.example
+- a service's fully qualified domain name can be used to reach the service from within any namespace in the cluster
+- managing access from outside the cluster
+  - ingress is external clients -> ingress -> service
+  - an ingress is a kubernetes object that manages external access to services in the cluster
+  - ingress relies on installation of an ingress controller
+  - ingresses define a set of routing rules, each rule has a set of paths
+    ```yaml
+    spec:
+      rules:
+        http:
+	  paths:
+	  - path: /somepath
+	    pathtype: Prefix
+	    backend:
+	      service:
+	        name: my-service
+		port:
+		number: 80
+    ```
+
+## K8s Storage
+- the container file system is ephemeral. files on the container's file system exist only as long as the container exists.
+- volumes allow you to store data outside the container file system while allowing the container to access the data at runtime
+- persistent volumes allow you to treat storage as an abstract resource and consume it using your pods
+- volume types: nfs, cloud storage, config maps and secrets, a simple directory on the k8s node
