@@ -1,3 +1,4 @@
+- [ ] choose a router, move to bridge mode with pi running pihole for dns and pivpn
 - [ ] clean up AWS account
 - [ ] fix basketball drill bot
-- [ ] refactor basketball drill bot (and rename it yuck)
+- [ ] refactor basketball drill bot
