@@ -1,8 +1,6 @@
 ## Python Packaging
 
-Snyk needs a requirements.txt file to do SAST on python code.
-
-Given a .whl package a requirements file can be generated.
+Snyk needs a requirements.txt file to do SAST on python code. Given a .whl package a requirements file can be generated.
 
 1. create a venv and activate it
     - make sure to use the proper python version on the venv
