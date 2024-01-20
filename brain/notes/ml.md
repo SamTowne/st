@@ -1,17 +1,28 @@
 ## Machine Learning Engineering
 
 ### Objective
-Gain understanding of machine learning foundations so that I can help organizations who are looking to leverage machine learning advancements. These are examples of some of the tangible skills I would like to have as part of this learning.
-  - understand the foundational components an org needs to leverage ML
-  - be able to cut through the hype towards solving real problems in the simplest way
-  - how to protect an organization from out of control ML spend
-  - maturing company intake funnel so that ML is only used when it is the simplest solution for the given problem
-  - provide cost/benefit analysis for a ML project so that an organization can determine if it is worth the risk to start training
-  - given an existing org, evaluate the gaps that need to be filled before efficient ML work can be started -> data management, governance, tooling, security posture,talent, infrastructure, network, and if necessary, be able to engage a team towards building all this with good stewardship of organizational resources
-  - how to automate an ML-powered app including new data ingestion, ETL, inference, training, tuning, and canary deployment
-  - given a dataset and an existing ML infrastructure capability, provide training cost estimates
-  - understanding how to build an articial intelligence stack with a tiered structure of foundational models, common layer, and app layer as part of a wholistic org-wide design
+Understand machine learning to help with these types of things.
+  - communicate and diagram the architecture and foundational components needed to implement a use case
+  - influence ML engineering cost control, staying on budget and reducing financial risk
+  - provide training cost estimates, given a dataset and ML infrastructure
+  - build and continuously deploy a ML application in AWS
+
+#### Hands on projects to consider
+- https://towardsdatascience.com/a-weekend-ai-project-running-speech-recognition-and-a-llama-2-gpt-on-a-raspberry-pi-5298d6edf812
 
 #### Stas00 online book
-Stas00 is a ML engineer who has done some large scale LLM work recently. He has been brain dumping his hands on knowledge to this Github Book.
+Practical strategy for large scale ML engineering.
+- stopped at IO
 
+#### Machine Learning Engineering in Action - Ben Wilson
+- 2.4 The Foundation of ML engineering
+- the MLOps paradigm and the similarities between it, DevOps, and agile development
+- the data science flavor of devops is MLOps
+- MLOps engages a lot of stuff to help avoid failed, cancelled and non-adopted solutions
+  - Monitoring -> prediction accuracy, retraining performance, impact assessment, fallback/failure rate, logging
+  - Release -> versioning + registration, change managenment, approvals, auditing, A/B testing + statistical evaluation, bandit algorithms
+    - there is this concept of Data Version Control, DVC, which is basically git for data sets, https://towardsdatascience.com/introduction-to-data-version-control-59fabf447a60
+  - CI/CD -> build tools for continuous integration, deployment tools for continuous deployment
+  - Code development practices -> source code management, branching strategies, feature merging, parameter and metrics tracking, project experimentation and tuning tracking
+  - Code review practices -> peer review, unit test coverage, metrics validation
+  - Environment configuration -> Dev, QA, Prod, infrastructure management, platform management, dependency library management
