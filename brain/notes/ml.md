@@ -32,3 +32,29 @@ Practical strategy for large scale ML engineering.
 - "Delivering the simplest possible solution helps reduce development, computational, and operational costs for any given project."
 - "Borrowing and adapting Agile fundamentals to ML project work helps shorten the development life cycle, forces development architectures that are easier to modify, and enforces testability of complex applications to reduce maintenance burdens."
 - "Just as DevOps augments software engineering work, MLOps augments ML engineering work. While many of the core concepts remain the same for these paradigms, additional aspects of managing model artifacts and performing continuous testing of new versions introduce nuanced complexities."
+- 3.0 Before you model: Planning and scoping a project
+- find the simplest solution, early
+- aren't project planning and agile at odds?
+  - "A project plan is important, but it must not be too rigid to accomodate changes in technology or the environment, stakeholders' priorities, and people's understanding of the problem and its solution." - Scott Ambler, agile manifesto essay
+  - "Planning is good in ML. It's just critical to not set those plans in stone."
+- Tells a story of a data science team who has had multiple successesful projects at their company
+  - However, all of their previous projects were able to be completed in isolation, for the most part, from the rest of the business
+  - For the latest project, executives want them to add purchase recommendations to the company website
+  - The team begins their work, as usual, studiously working in isolation and making assumptions that the executives are envisioning something siilar to the website recommendations which competition has implemented
+  - They test dozens of implementations, consume hundreds of papers, and build out an MVP "using alternating least squares ALS that achieces a root mean squared error RMSE of 0.2334 along with a rough implementation of ordered scoring for relevance based on prior behavior."
+  - The team is stoked as they head to meet with the business sponsors about the MVP
+  - The response from the business is not great
+  - They ask lots of questions and do not seem to understand the functionality of the solution
+  - Attempts to make the solution more clear to the sponsors cause even more confusion and ambiguity about the solution
+  - The team did not properly plan for the nuances of the project, and the MVP was received negatively due to this gap
+  - They probably needed additional input from company sponsors, such as marketing, to frame the problem better during planning
+  - The recommendations the solution made were not quite nuanced enough to impact customer decisions in a logical way
+  - The DS team needed external input about the product being sold and typical customer behavior before getting too deep into the technical implementation
+  - Don't blindly trust your metrics
+  - Supplement the model-scoring metrics with other, subjective, means of understanding model efficacy
+  - Sometimes just drawing a diagram of the solution, and the user experience of the solution, can bring improvement options into view
+  - The data science team from the story would have done much better had they asked some of the marketing team to provide visualizations of what the new customer experience might look like with the new feature
+  - A business analyst reviewed the proposed solution and found multiple problems "the nuances of the problem"
+    - there was duplicated item data due to older product IDs
+    - different divisions used different product IDs and this was not being accounted for
+- 3.1.1 Basic planning for a project
