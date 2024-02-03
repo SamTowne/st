@@ -1,4 +1,9 @@
-- [ ] choose a router, move to bridge mode with pi running pihole for dns and pivpn
+- [X] choose a router, move to bridge mode with pi running pihole for dns and pivpn
+  - asus router running well
+  - pihole is running great
+  - ran the ISP-router and Asus in parallel for about a month
+  - switched provider WAP to bridge mode so it is serving as a modem only
+  - everything is working well, except certain streaming providers complain about vpn use, so the vpn is off for certain clients, mainly the smart tvs
+  - 18.8% of all queries blocked
+  - was going to replace provider modem with our own, but they continued giving us a good rate so there is no need to do that
 - [ ] clean up AWS account
-- [ ] fix basketball drill bot
-- [ ] refactor basketball drill bot
