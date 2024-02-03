@@ -7,6 +7,10 @@ Understand machine learning to help with these types of things.
   - provide training cost estimates, given a dataset and ML infrastructure
   - build and continuously deploy a ML application in AWS
 
+### Apache Airflow
+- find some public, mature apache airflow usage with CICD that enables the promotion of DAGs from lower to higher envs
+- try and find out if people are shceduling to shut down environments after hours, and if any of those using the aws automation for off hours shutdown are also using terraform for iac
+
 #### Hands on projects to consider
 - https://towardsdatascience.com/a-weekend-ai-project-running-speech-recognition-and-a-llama-2-gpt-on-a-raspberry-pi-5298d6edf812
 
@@ -58,3 +62,11 @@ Practical strategy for large scale ML engineering.
     - there was duplicated item data due to older product IDs
     - different divisions used different product IDs and this was not being accounted for
 - 3.1.1 Basic planning for a project
+- that first meeting
+- there is a tendency to begin thinking about the "how" of a project in the first meeting
+- avoid doing this, instead, listen carefully and take notes, really try to understand the current need with a 'teach me how you do it now please' approach
+- 3.1.3 Plat for demos - lots of demos
+- try and demo each feature as they are available if possible
+  - for an MVP with 4 features, here would be a good demo strategy -> model testing , demo, feature 1 , demo, feature 2, demo, feature 3 demo, feature 4, full MVP demo
+  - you don't want to build the entire MVP and then demo to stakeholders, what if something was missed? but this too is based upon MVP complexity, if it's simple it may make sense to whip it out and then demo
+  - "without frequent demos as features are built out, the team at large is simply operating in the dark with respect to the ML aspect of the project. The ML team, meanwhile, is missing out on valuable time-saving feedback from SME members..."
