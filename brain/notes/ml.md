@@ -8,7 +8,7 @@ Understand machine learning to help with these types of things.
   - build and continuously deploy a ML application in AWS
 
 ### Apache Airflow
-- find some public, mature apache airflow usage with CICD that enables the promotion of DAGs from lower to higher envs
+- find some public, mature apache airflow usage with CICD that enables the promotion of DAGs from lower to higher envs https://github.com/jghoman/awesome-apache-airflow
 - try and find out if people are shceduling to shut down environments after hours, and if any of those using the aws automation for off hours shutdown are also using terraform for iac
 
 #### Hands on projects to consider
