@@ -70,3 +70,9 @@ Practical strategy for large scale ML engineering.
   - for an MVP with 4 features, here would be a good demo strategy -> model testing , demo, feature 1 , demo, feature 2, demo, feature 3 demo, feature 4, full MVP demo
   - you don't want to build the entire MVP and then demo to stakeholders, what if something was missed? but this too is based upon MVP complexity, if it's simple it may make sense to whip it out and then demo
   - "without frequent demos as features are built out, the team at large is simply operating in the dark with respect to the ML aspect of the project. The ML team, meanwhile, is missing out on valuable time-saving feedback from SME members..."
+  - keep individual feature demos lightweight! a slide deck to get the point across for each feature is BETTER than building a microservice or frontend that takes quadruple the time/effort and slows the project timeline... save that time for the bigger demos as multiple features come together
+- 3.1.4 Experimentation by solution building: Wasting time for pride's sake
+- avoid solution-building during experimentation such as software bake-offs where the team splits up into groups to explore each solution, this hackathon-like approach is not good for ml engineering
+- concept of multiple-MVP development vs. experimentation culling development
+- instead, leverage prototype experimentation enables the team to find an MVP to continue pursuing together, instead of wasting effort building 3 MVPs, then continuing with the winner
+- experimentation culling is to consider the MVP options, and do low-cost prototypes as a team to decide which one to turn into the actual MVP for the project
