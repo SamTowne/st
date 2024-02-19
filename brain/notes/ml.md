@@ -76,3 +76,5 @@ Practical strategy for large scale ML engineering.
 - concept of multiple-MVP development vs. experimentation culling development
 - instead, leverage prototype experimentation enables the team to find an MVP to continue pursuing together, instead of wasting effort building 3 MVPs, then continuing with the winner
 - experimentation culling is to consider the MVP options, and do low-cost prototypes as a team to decide which one to turn into the actual MVP for the project
+- experimentation is important for ML projects, but "must be time-boxed"
+- use existing methods to meet time constraints, do not re-invent project components from the ground up if there are existing libraries which can reasonably satisfy the business need
