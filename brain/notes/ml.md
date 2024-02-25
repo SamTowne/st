@@ -77,4 +77,5 @@ Practical strategy for large scale ML engineering.
 - instead, leverage prototype experimentation enables the team to find an MVP to continue pursuing together, instead of wasting effort building 3 MVPs, then continuing with the winner
 - experimentation culling is to consider the MVP options, and do low-cost prototypes as a team to decide which one to turn into the actual MVP for the project
 - experimentation is important for ML projects, but "must be time-boxed"
-- use existing methods to meet time constraints, do not re-invent project components from the ground up if there are existing libraries which can reasonably satisfy the business need
+- 3.2 Experimental scoping: Setting expectations and boundaries
+- "Through setting these expectations and providing boundaries on each of them (for both time and level of implementation complexity), the ML team can provide the one thing that the business is seeking: an expected delivery date and a judgement call on what is or isn't feasible."
