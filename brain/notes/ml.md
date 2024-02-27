@@ -79,3 +79,11 @@ Practical strategy for large scale ML engineering.
 - experimentation is important for ML projects, but "must be time-boxed"
 - 3.2 Experimental scoping: Setting expectations and boundaries
 - "Through setting these expectations and providing boundaries on each of them (for both time and level of implementation complexity), the ML team can provide the one thing that the business is seeking: an expected delivery date and a judgement call on what is or isn't feasible."
+- 3.2.1 What is experimental scoping?
+- After requirements gathering, it is absolutely essential to set an expectation with the larger team on how long the DS team will spend on vetting each of the ideas during research and experimentation.
+- Having a target date helps bring focus.
+- Having a date for something that is wholly unknowable (the best solution) may seem counterintuitive, but it forces simplicifty and focused thought around finding options within a time box
+- The time box on the initial experimentation naturally forces teams to postpone evaluation of things that are "interesting" but not essential, jot them down somewhere, parking lot them, and reevaluate them down the road
+- For complex stuff, it may require 2 weeks just for research followed by another 2 weeks for hacking
+- the sole purpose of these exercises is to decide on a path, and to make that decision in the shortest time possible against the timeline of delivery for the MVP
+- the amount of time required depends on the complexity of the business need, and as a team gets more comfortable with the business and each other, it becomes easier to provide a timeline to the business for the "experiment/hacking" phase
