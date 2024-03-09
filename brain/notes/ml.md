@@ -87,3 +87,42 @@ Practical strategy for large scale ML engineering.
 - For complex stuff, it may require 2 weeks just for research followed by another 2 weeks for hacking
 - the sole purpose of these exercises is to decide on a path, and to make that decision in the shortest time possible against the timeline of delivery for the MVP
 - the amount of time required depends on the complexity of the business need, and as a team gets more comfortable with the business and each other, it becomes easier to provide a timeline to the business for the "experiment/hacking" phase
+- 3.2.2 Experimental scoping for the ML team: Research
+- the depth and breadth of the ML space is a black hole
+- time box the research efforts to avoid over-spending project time in this phase
+- set boundaries about how long and how far the research will go for a new problem
+- a research path for a team often looks like this
+  - individual research (ask peers, review technical books, etc.)
+  - data science team evaluation of options provided by each individual (ideally both classic and proven implementations and state of the art methods are in consideration)
+  - selection of top 3 options to run experimentation on (adjudication and culling process)
+- the outcome of the research path should be a few options to run prototype development against
+- prototype development is also time boxed, these are intended to hash out the options for an MVP decision
+- then, from the prototype development, a MVP is formed
+- 3.2.3 Experimental scoping for the ML team: Experimentation
+- project lead should set the expectation for experimentation
+- "The goal is to produce a simulation of the end product that allows for an unbiased comparison of the solutions being considered."
+- "There is no need for the models to be tuned, nor for the code to be written in such a way that it could ever be considered for use in the final project's code base."
+- "The name of the game here is a balance between two primary goals: speed and comparability."
+- evaluate the performance of the solutions AND the difficulty of developing the full solution
+- estimate the total final code complexity so that the larger team can be informed about estimated development time for each option
+- this estimation process is important for helping the business to understand total cost of ownership of the solution options
+- this is a good opportunity to pause, and demo the options
+- the results of a solution are not the only consideration, there is also complexity risk that should be considered, is a 15% better result worth 80% more complexity and dev time?
+- "If an appreciable gain isn't clearly obvious to everyone (including the business), an internal discussion should take place about resume-driven development and the motice for taking on such increased work."
+- "Everyone just needs to be aware of what they're getting into and what they'll potentially be maintianing for a few years should they choose to pursue this additional complexity."
+- experimentation plan diagrams are useful to share the expectation about how to experiment in a time-boxed way, example "manually create datasets vs. writing some complex ETL job to automate it during experimentation"
+- it should be clear that the purpose of experimentation is to obtain a working option, NOT to find the optimal solution, simplify scope, lower barrier to entry, tried and true options reduce risk
+- the optimal solution might actually look like months or years of research, publishing papers, optimizing a library or writing a new one lol, clarify the scope of experimentation to match the actual business need. 
+- "are we google and need global scale and machine-code level optimization? or are we a regular fortune 500 with normal needs?"
+- "the goal of experimentation is to find the most promising and simplest approach that solves the problem, not to use the most technically sophisticated solution."
+- questinos that help uncover total cost of ownership of an option
+  - what additional ETL do we need to build?
+  - how often do we need to retrain models and generate interfaces?
+  - what platform are we going to sue to run these models?
+  - for the platform and infrastructure that we need, are we going to use a managed service or are we going to try and run it ourselves?
+  - do we have expertise in running and maintaining services for ML of this nature?
+  - what is the cost of the serving layer plans that we have?
+  - what is the cost of storage, and where will the inference data live to support this project?
+- these questions do not need to be answered before development starts, but they should be continually evaluated throughout
+- sometimes it'd be better to decide earlier and fail then to evaluate options for too long and fail due to time investment, oh look its the amazing fail fast buzzword
+- using a weighted decision matrix for options analysis
