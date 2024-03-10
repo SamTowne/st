@@ -126,3 +126,17 @@ Practical strategy for large scale ML engineering.
 - these questions do not need to be answered before development starts, but they should be continually evaluated throughout
 - sometimes it'd be better to decide earlier and fail then to evaluate options for too long and fail due to time investment, oh look its the amazing fail fast buzzword
 - using a weighted decision matrix for options analysis
+- 4 Before you model: Communication and logistics of projects
+- key questions
+  - why do you want this built?
+  - what do you expect a solution to do?
+  - how does your team do this now?
+  - what would you consider to be a perfect solution for this?
+  - how much would you pay for another company to do this for you?
+  - when would this solution become irrelevant?
+- 4.1 Communication: Defining the problem
+- don't forget to ask the why question
+- why do the project?
+- collectively discuss the project's key principles to identify the
+- "simplest possible solution that solves the problem"
+- 4.1.1
