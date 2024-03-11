@@ -6,4 +6,4 @@
   - everything is working well, except certain streaming providers complain about vpn use, so the vpn is off for certain clients, mainly the smart tvs
   - 18.8% of all queries blocked
   - was going to replace provider modem with our own, but they continued giving us a good rate so there is no need to do that
-- [ ] clean up AWS account
+- [ ] clean up AWS account, https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automate-deletion-of-aws-resources-by-using-aws-nuke.html
