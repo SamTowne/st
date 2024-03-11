@@ -140,3 +140,14 @@ Practical strategy for large scale ML engineering.
 - collectively discuss the project's key principles to identify the
 - "simplest possible solution that solves the problem"
 - 4.1.1
+- poor communication between the data science team and the business unit requesting the feature is deadly
+- leverage "nice to have" lingo for features, every add-on has a cost associated
+- the only bad ideas are the ones that get ignored
+- don't let all ideas make it into the core experimentation plan, stick to an MVP focus
+- discuss the ideal end state with the customer if possible
+- allow wild suggestions from the business unit, don't shut them down, realize they do not understand the tech
+- let the ideation conversation happen, it'll build a connection and trust between teams
+- the 3 step listening process -> listen to the customer, repeat back in your own words, ask them if you are understanding and restart the cycle as needed
+- in the first meeting with the customer, get agreement to snag an SME from that team, someone who is not an executive sponsor of the project, but knows the subject matter well
+- project meetings should align to project milestones
+- 4.1.2
