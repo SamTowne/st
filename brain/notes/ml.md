@@ -150,4 +150,10 @@ Practical strategy for large scale ML engineering.
 - the 3 step listening process -> listen to the customer, repeat back in your own words, ask them if you are understanding and restart the cycle as needed
 - in the first meeting with the customer, get agreement to snag an SME from that team, someone who is not an executive sponsor of the project, but knows the subject matter well
 - project meetings should align to project milestones
-- 4.1.2
+- 4.1.2 Setting critical decision boundaries
+- limit meetings to only when something new needs review
+- get agreement about milestone meetings in advance, and what things need to have arrived in order to host the meeting
+- meeting cadence is, and should be, different for every situation. some projects require more, some need very few, don't meet too much.
+- Post-research phase discussion (update meeting), don't cover all the options that were rejected, just focus on the core details required to get into the next phase: experimentation
+- it is best to present the options that will guarantee the greatest chance of project success, even if they are less fancy, or less exciting
+- Post experimentation phase (SME/UAT review)
