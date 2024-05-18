@@ -157,3 +157,11 @@ Practical strategy for large scale ML engineering.
 - Post-research phase discussion (update meeting), don't cover all the options that were rejected, just focus on the core details required to get into the next phase: experimentation
 - it is best to present the options that will guarantee the greatest chance of project success, even if they are less fancy, or less exciting
 - Post experimentation phase (SME/UAT review)
+- the concept of a "nice to have" feature is important to identify things that are not critical to the core functionality of an MVP, while allowing some investigation into implementing them, time/resource-permitting
+- MVP Review (Full demo with UAT)
+- code complete
+  - code is tested, unit test/integration test coverage
+  - the system functions as a whole with production-scale data
+  - agreed upon features are complete
+- creator bias is real, UAT is critical to find flaws in the system, common to have nuance that gets called out as part of UAT to improve the system
+- PreProduction Review (Final Demo with UAT)
