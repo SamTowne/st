@@ -18,18 +18,7 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
-
-
-resource "aws_ecr_repository" "repository" {
-  name = "custodian-ecr-repository"
-}
-
-resource "aws_s3_bucket" "bucket1" {
-  bucket = "custodian-bucket1"
-  acl    = "private"
-}
-
-resource "aws_s3_bucket" "bucket2" {
-  bucket = "custodian-bucket2"
-  acl    = "private"
+resource "aws_iam_role_policy_attachment" "lambda_role_policy_attachment" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }

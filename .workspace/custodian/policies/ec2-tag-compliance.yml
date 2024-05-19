@@ -1,0 +1,10 @@
+policies:
+  - name: ec2-tag-compliance
+    resource: ec2
+    filters:
+      - "tag:Custodian": absent
+    actions:
+      - type: mark-for-op
+        tag: Custodian
+        op: terminate
+        days: 7

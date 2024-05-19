@@ -4,3 +4,4 @@
 !/brain/*
 !/.workspace
 !/.workspace/*
+/.workspace/**/*.terraform/
