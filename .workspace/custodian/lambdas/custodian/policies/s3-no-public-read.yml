@@ -1,0 +1,11 @@
+policies:
+  - name: s3-no-public-read
+    resource: s3
+    filters:
+      - type: global-grants
+        any-user: 
+          - READ
+    actions:
+      - type: delete-global-grants
+        grantees: 
+          - "*"
