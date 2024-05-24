@@ -15,4 +15,7 @@ docker tag custodian-ecr-repository:latest 272773485930.dkr.ecr.us-west-2.amazon
 # Push your Docker image to the ECR repository
 docker push 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
 
+# Update lambda function with the new image
+aws lambda update-function-code --region us-west-2 --function-name custodian-execution-lambda --image-uri 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
+
 */
