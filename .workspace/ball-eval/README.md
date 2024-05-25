@@ -1,0 +1,3 @@
+- aws sam for fast local dev
+- evaluate use of pandas and pyathena over existing flat json files
+- try out the pandas corr() function

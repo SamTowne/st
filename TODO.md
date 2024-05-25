@@ -1,9 +1,16 @@
-- [X] choose a router, move to bridge mode with pi running pihole for dns and pivpn
-  - asus router running well
-  - pihole is running great
-  - ran the ISP-router and Asus in parallel for about a month
-  - switched provider WAP to bridge mode so it is serving as a modem only
-  - everything is working well, except certain streaming providers complain about vpn use, so the vpn is off for certain clients, mainly the smart tvs
-  - 18.8% of all queries blocked
-  - was going to replace provider modem with our own, but they continued giving us a good rate so there is no need to do that
-- [X] clean up AWS account, https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automate-deletion-of-aws-resources-by-using-aws-nuke.html
+- [X] Choose a router, move to bridge mode with pi running pihole for dns and pivpn
+    - Asus router running well
+    - Pihole is running great
+    - Ran the ISP-router and Asus in parallel for about a month
+    - Switched provider WAP to bridge mode so it is serving as a modem only
+    - Everything is working well, except certain streaming providers complain about VPN use, so the VPN is off for certain clients, mainly the smart TVs
+    - 18.8% of all queries blocked
+    - Was going to replace provider modem with our own, but they continued giving us a good rate so there is no need to do that
+- [X] Clean up AWS account, https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automate-deletion-of-aws-resources-by-using-aws-nuke.html
+- [ ] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
+- [ ] Set up AWS SAM for local Lambda development
+    - Install AWS SAM CLI
+    - Create a new SAM application
+    - Write a Lambda function to evaluate JSON data using pandas and pyathena
+    - Test and debug the function locally
+    - Deploy the function to AWS
