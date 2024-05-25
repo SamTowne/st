@@ -165,3 +165,20 @@ Practical strategy for large scale ML engineering.
   - agreed upon features are complete
 - creator bias is real, UAT is critical to find flaws in the system, common to have nuance that gets called out as part of UAT to improve the system
 - PreProduction Review (Final Demo with UAT)
+- 4.2 Don't waste our time: Meeting with cross-functional teams
+- the next few pages go into detail about the different types of recommended meetings to have as an ML project goes through the phases
+  - experimental update meeting, sme prototype review, development progress review(s), mvp review, preproduction review
+- 4.3 Setting limits on your experimentation
+- set a time limit
+- 4.3.2 Can you put this into production? Would you want to maintain it?
+  - how long is this solution going to take to build?
+  - how complext is thie code base going to be?
+  - how expensive is this going to be to train based on the schedule it needs to be retrained at?
+  - does my team have the skill required to maintain this solution?
+  - is this testable? auditable?
+- 4.3.3 TDD vs. RDD vs. PDD vs. CDD for ML projects
+- test driven dev
+- lol, PDD stands for prayer-driven development "just work, please"
+- chaos driven development, skip experimentation and prototyping altogether
+- resume driven development, overengineering, only going with the newest / most novel solutions instead of the simplest effective option
+- 5 Experimentation in action: Planning and researching an ML project
