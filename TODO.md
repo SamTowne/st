@@ -1,3 +1,5 @@
+- [ ] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
+- [ ] continue the SAM tut https://catalog.workshops.aws/complete-aws-sam/en-US/module-3-manual-deploy/05-module-goals
 - [X] Choose a router, move to bridge mode with pi running pihole for dns and pivpn
     - Asus router running well
     - Pihole is running great
@@ -7,8 +9,7 @@
     - 18.8% of all queries blocked
     - Was going to replace provider modem with our own, but they continued giving us a good rate so there is no need to do that
 - [X] Clean up AWS account, https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/automate-deletion-of-aws-resources-by-using-aws-nuke.html
-- [ ] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
-- [ ] Set up AWS SAM for local Lambda development
+- [X] Set up AWS SAM for local Lambda development
     - Install AWS SAM CLI
     - Create a new SAM application
     - Write a Lambda function to evaluate JSON data using pandas and pyathena
