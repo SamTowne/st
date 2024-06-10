@@ -1,21 +1,23 @@
 resource "aws_ecr_repository" "repository" {
   name = "custodian-ecr-repository"
+##push commands
+/*
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 272773485930.dkr.ecr.us-west-2.amazonaws.com
+docker build --platform linux/amd64 -t custodian-lambda .
+docker tag custodian-ecr-repository:latest 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
+docker push 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
+aws lambda update-function-code --region us-west-2 --function-name custodian-execution-lambda --image-uri 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
+*/
 }
 
+resource "aws_ecr_repository" "data_processing_repository" {
+  name = "custodian-data-processing"
+##push commands
 /*
-# Authenticate Docker to your ECR registry
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 272773485930.dkr.ecr.us-west-2.amazonaws.com
-
-# Build
-docker build --platform linux/amd64 -t custodian-lambda .
-
-# Tag your Docker image with the ECR repository URI
-docker tag custodian-ecr-repository:latest 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
-
-# Push your Docker image to the ECR repository
-docker push 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
-
-# Update lambda function with the new image
-aws lambda update-function-code --region us-west-2 --function-name custodian-execution-lambda --image-uri 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
-
+docker build -t custodian-data-processing .
+docker tag custodian-data-processing:latest 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-data-processing:latest
+docker push 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-data-processing:latest
+aws lambda update-function-code --region us-west-2 --function-name custodian-data-processing --image-uri 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
 */
+}
