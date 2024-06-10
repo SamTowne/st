@@ -7,3 +7,8 @@
 /.workspace/**/*.terraform/
 .DS_Store
 .aws-sam/
+.venv/
+.pytest_cache/
+__pycache__/
+.terraform/
+.workspace-ignored/
