@@ -7,6 +7,7 @@ resource "aws_lambda_function" "lambda" {
 
   timeout     = 60
   memory_size = 350
+  architectures = ["arm64"]
 }
 
 resource "aws_lambda_function" "data-processing" {
@@ -18,4 +19,5 @@ resource "aws_lambda_function" "data-processing" {
 
   timeout     = 60
   memory_size = 128
+  architectures = ["arm64"]
 }

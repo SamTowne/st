@@ -48,10 +48,10 @@ def build_and_push(short_name):
     os.chdir(os.path.dirname(lambda_info['dockerfile_path']))
 
     # Build Docker image
-    subprocess.run(f"docker build -t {lambda_info['name']} -f {lambda_info['dockerfile_path']} .", shell=True, check=True)
+    subprocess.run(f"docker build --platform linux/arm64 -t {lambda_info['name']} -f {lambda_info['dockerfile_path']} .", shell=True, check=True)
 
     # Tag Docker image
-    subprocess.run(f"docker tag {lambda_info['name']}:latest {repo_url}/{lambda_info['name']}:latest", shell=True, check=True)
+    subprocess.run(f"docker tag {lambda_info['name']}:latest {repo_url}/{lambda_info['ecr_repo']}:latest", shell=True, check=True)
 
     # Push Docker image to ECR
     subprocess.run(f"docker push {repo_url}/{lambda_info['ecr_repo']}:latest", shell=True, check=True)

@@ -6,7 +6,7 @@ class TestRunCustodian(TestCase):
     @mock.patch('subprocess.run')
     def test_run_custodian_success(self, mock_run):
         # Arrange
-        mock_run.return_value = subprocess.CompletedProcess(args=["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/*.yml"], returncode=0)
+        mock_run.return_value = subprocess.CompletedProcess(args=["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/tag-compliance.yml"], returncode=0)
         lamda_task_root = "/lambda/task/root"
 
         # Act
@@ -14,7 +14,7 @@ class TestRunCustodian(TestCase):
 
         # Assert
         mock_run.assert_called_once_with(
-            ["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/*.yml"], 
+            ["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/tag-compliance.yml"], 
             check=True, text=True, stderr=subprocess.STDOUT
         )
 
@@ -23,7 +23,7 @@ class TestRunCustodian(TestCase):
         # Arrange
         mock_run.side_effect = subprocess.CalledProcessError(
             returncode=1, 
-            cmd=["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/*.yml"],
+            cmd=["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/tag-compliance.yml"],
             output='Error running Cloud Custodian'
         )
         lamda_task_root = "/lambda/task/root"
@@ -36,6 +36,6 @@ class TestRunCustodian(TestCase):
 
         # Assert
         mock_run.assert_called_once_with(
-            ["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/*.yml"], 
+            ["custodian", "run", "-s", "s3://custodian-bucket-benjals-272773485930/custodian-output", "/lambda/task/root/policies/tag-compliance.yml"], 
             check=True, text=True, stderr=subprocess.STDOUT
         )
