@@ -32,6 +32,9 @@ def build_and_push(short_name):
 
     if lambda_info is None:
         print(f"Error: Unknown short name '{short_name}'")
+        print("Available short names:")
+        for lambda_info in lambdas:
+            print(f"  {lambda_info['short_name']}")
         return
 
     # Run pytest
