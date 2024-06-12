@@ -8,6 +8,13 @@ resource "aws_lambda_function" "lambda" {
   timeout     = 60
   memory_size = 350
   architectures = ["arm64"]
+  environment {
+    variables = {
+      ENV = "prod"
+      REGIONS_PARAMETER_PATH = aws_ssm_parameter.regions_parameter.name
+      BUCKET_NAME_PARAMETER_PATH = aws_ssm_parameter.bucket_name_parameter.name
+    }
+  }
 }
 
 resource "aws_lambda_function" "data-processing" {
