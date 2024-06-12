@@ -98,6 +98,6 @@ def lambda_handler(event, context):
 if __name__ == "__main__":
     # For local testing
     event = {
-        'rule_name': 'tag-compliance'
+        'rule_name': 'aws-required-tags'
     }
-    handler(event, None)
+    lambda_handler(event, None)

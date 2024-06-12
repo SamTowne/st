@@ -3,8 +3,7 @@ policies:
     resource: ec2
     filters:
       - "tag:Custodian": absent
-    actions:
-      - type: mark-for-op
-        tag: Custodian
-        op: terminate
-        days: 7
+  - name: rds-tag-compliance
+    resource: rds
+    filters:
+      - "tag:Custodian": absent

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import glob
 import os
 import subprocess
 import sys
@@ -40,6 +41,19 @@ def build_and_push(short_name):
     if result.returncode != 0:
         print(f"Tests failed, aborting. Output was:\n{result.stdout}")
         return
+
+    # Run custodian policy validation command for 'custodian_exec'
+    custodian_policy_files = glob.glob(os.path.join(pytest_dir, 'policies', '*.yml'))
+    print(custodian_policy_files)
+    if short_name == 'custodian_exec':
+        for policy_file in custodian_policy_files:
+            print(f"Running custodian policy validation for {lambda_info['name']} on {policy_file}...")
+            # Replace 'custodian validate policies.yml' with your actual command
+            result = subprocess.run(['custodian', 'validate', policy_file], text=True, capture_output=True)
+            if result.returncode != 0:
+                print(f"Custodian policy validation failed for {policy_file}, aborting deployment. {result.stdout}")
+                print(result.stderr)
+                return
 
     # Login to ECR
     subprocess.run(f"aws ecr get-login-password --region {region} | docker login --username AWS --password-stdin {repo_url}", shell=True, check=True)
