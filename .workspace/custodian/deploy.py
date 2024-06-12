@@ -44,7 +44,6 @@ def build_and_push(short_name):
 
     # Run custodian policy validation command for 'custodian_exec'
     custodian_policy_files = glob.glob(os.path.join(pytest_dir, 'policies', '*.yml'))
-    print(custodian_policy_files)
     if short_name == 'custodian_exec':
         for policy_file in custodian_policy_files:
             print(f"Running custodian policy validation for {lambda_info['name']} on {policy_file}...")

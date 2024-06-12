@@ -65,16 +65,13 @@ def run_custodian(region, output_path, rule_name):
 
     for policy_file in policy_files:
         run_command = f'custodian run --cache-period=0 --region {region} --output-dir={output_path} {policy_file}'
-        report_command = f'custodian report --region {region} --output-dir={output_path} {policy_file}'
         try:
             logger.info(f"Running custodian: {run_command}")
             run_process = subprocess.Popen(run_command, shell=True, stdout=subprocess.PIPE)
             run_process.wait()
-            logger.info(run_process.stdout.read())
-            logger.info(f"Running custodian report: {report_command}")
-            report_process = subprocess.Popen(report_command, shell=True, stdout=subprocess.PIPE)
-            report_process.wait()
-            logger.info(report_process.stdout.read())
+            run_command_output = run_process.stdout.read()
+            if run_command_output:
+                logger.info(run_command_output)
         except Exception as e:
             logger.error(f"Error running Cloud Custodian: {e}")
             raise

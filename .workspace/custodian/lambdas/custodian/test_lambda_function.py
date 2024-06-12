@@ -85,9 +85,6 @@ class TestRunCustodian(unittest.TestCase):
             call('custodian run --cache-period=0 --region us-west-2 --output-dir=s3://my_bucket/custodian-run-logs/account=123456789012/region=us-west-2 /var/task/policies/rule_name/policy1.yml', shell=True, stdout=subprocess.PIPE),
             call().wait(),
             call().stdout.read(),
-            call('custodian report --region us-west-2 --output-dir=s3://my_bucket/custodian-run-logs/account=123456789012/region=us-west-2 /var/task/policies/rule_name/policy1.yml', shell=True, stdout=subprocess.PIPE),
-            call().wait(),
-            call().stdout.read()
         ])
 
 # lambda_handler
