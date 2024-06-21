@@ -28,3 +28,13 @@ resource "aws_lambda_function" "data-processing" {
   memory_size = 128
   architectures = ["arm64"]
 }
+
+resource "aws_cloudwatch_log_group" "custodian-exec" {
+  name = "/aws/lambda/custodian-execution-lambda"
+  retention_in_days = 30
+}
+
+resource "aws_cloudwatch_log_group" "data-proc" {
+  name = "/aws/lambda/custodian-data-processing-lambda"
+  retention_in_days = 30
+}
