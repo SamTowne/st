@@ -1,6 +1,7 @@
 import logging
 import json
 import base64
+from urllib.parse import unquote
 
 import boto3
 from botocore.exceptions import ClientError
@@ -63,21 +64,26 @@ def get_db_connection_parameters():
     return parameters
 
 
+import gzip
+
 def process_data(s3_object, bucket_name):
     """
     Retrieve data from S3 object.
     """
     logger.info("Processing data from S3")
     s3 = boto3.client('s3', config=config)
+    data = None
     try:
-        response = s3.get_object(Bucket=bucket_name, Key=s3_object)
-        data = response['Body'].read().decode('utf-8')
-    except ClientError as e:
+        object_key = unquote(s3_object['key'])
+        logger.info(f"Bucket: {bucket_name}, Key: {object_key}")
+        response = s3.get_object(Bucket=bucket_name, Key=object_key)
+        gzip_file = gzip.GzipFile(fileobj=response['Body'])
+        data = gzip_file.read().decode('utf-8')
+    except Exception as e:
         logger.error("Error retrieving data from S3: {}".format(e))
         raise e
 
     return data
-
 
 def configure_docdb_client(parameters, secret):
     """
@@ -115,6 +121,7 @@ def handler(event, context):
     if not valid_event:
         logger.error("Invalid event data")
         return
+    logger.info("Event data: {}".format(event))
     s3_object = event['Records'][0]['s3']['object']
     bucket_name = event['Records'][0]['s3']['bucket']['name']
     logger.info("Processing data from S3 object: {}".format(s3_object))

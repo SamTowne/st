@@ -2,6 +2,8 @@ import pytest
 import boto3
 from moto import mock_aws
 from unittest.mock import MagicMock, patch
+import gzip
+import io
 
 from lambda_function import(
     get_db_connection_parameters,
@@ -31,9 +33,17 @@ def test_get_secret():
 def test_process_data():
     s3 = boto3.client('s3', region_name='us-east-1')
     s3.create_bucket(Bucket='test-bucket')
-    s3.put_object(Bucket='test-bucket', Key='test-object', Body='test-data')
-    data = process_data('test-object', 'test-bucket')
-    assert data == 'test-data'
+    
+    # Compress the test data
+    test_data = 'test-data'
+    test_data_compressed = io.BytesIO()
+    with gzip.GzipFile(fileobj=test_data_compressed, mode='w') as gzip_file:
+        gzip_file.write(test_data.encode('utf-8'))
+    
+    s3.put_object(Bucket='test-bucket', Key='test-object', Body=test_data_compressed.getvalue())
+    s3_object = {'key': 'test-object'}
+    data = process_data(s3_object, 'test-bucket')
+    assert data == test_data
 
 @patch('pymongo.MongoClient')
 def test_insert_into_documentdb(mocked_client):
