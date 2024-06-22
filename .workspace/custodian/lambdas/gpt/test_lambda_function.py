@@ -5,12 +5,17 @@ from pymongo import MongoClient
 import json
 import gzip
 import io
+import importlib
+import sys
+
+# Mock httpx before importing lambda_function
+sys.modules['httpx'] = MagicMock()
 
 from lambda_function import(
     get_db_connection_parameters,
     get_secret, 
     process_data, 
-    insert_into_documentdb,
+    pygptscript_summarize_collection,
 )
 
 @patch('boto3.client')
@@ -80,14 +85,20 @@ def test_process_data(mocked_client):
     # Assert that the returned data is correct
     assert data == test_data
 
-@patch('pymongo.MongoClient')
-def test_insert_into_documentdb(mocked_client):
-    parameters = {"docdb_collection": "mocked-collection", "docdb_endpoint": "mocked-endpoint"}
-    mocked_db = MagicMock()
-    mocked_collection = MagicMock()
-    mocked_client.return_value.__getitem__.return_value = mocked_db
-    mocked_db.__getitem__.return_value = mocked_collection
 
-    insert_into_documentdb(mocked_client.return_value, {"test": "data"}, parameters)
+def test_summarize_collection():
+    with patch('gptscript.gptscript.GPTScript') as MockGPTScript:
+        # Reload lambda_function module to apply the patch
+        importlib.reload(sys.modules['lambda_function'])
 
-    mocked_collection.insert_one.assert_called_with({"test": "data"})
+        # Arrange
+        instance = MockGPTScript.return_value
+        instance.summarize.return_value = "Summary"
+        collection = [{"key1": "value1"}, {"key2": "value2"}]
+
+        # Act
+        result = pygptscript_summarize_collection(collection)
+
+        # Assert
+        assert isinstance(result, str)
+        instance.summarize.assert_called_once()

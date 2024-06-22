@@ -9,6 +9,7 @@ import boto3
 from botocore.exceptions import ClientError
 from pymongo import MongoClient
 from botocore.config import Config
+from gptscript.gptscript import GPTScript
 
 # Set up logging
 LOGGER = logging.getLogger()
@@ -17,16 +18,6 @@ LOGGER.setLevel(logging.INFO)
 # Set up a botocore config with no retries
 config = Config(retries={'max_attempts': 0})
 
-
-def check_event(event):
-    """
-    Check the event data for required fields.
-    """
-    if 'Records' not in event:
-        LOGGER.error("Event data is missing the 'Records' field")
-        raise ValueError("Invalid event data")
-
-    return True
 
 def get_secret(secret_name):
     """
@@ -64,7 +55,6 @@ def get_db_connection_parameters():
         raise e
     LOGGER.info(f"Parameters: {parameters}")
     return parameters
-
 
 
 def process_data(s3_object, bucket_name):
@@ -105,39 +95,41 @@ def configure_docdb_client(parameters, secret):
     return client
 
 
-def insert_into_documentdb(client, data, parameters):
-    """
-    Insert the data into the specified DocumentDB collection.
-    """
-    LOGGER.info("Inserting data into DocumentDB")
+def get_docdb_collection(client, collection_name):
     try:
-        LOGGER.info(f"Parameters: {parameters}")
-        LOGGER.info(f"Data: {data}")
         db = client['custodian']
-        collection = parameters['docdb_collection']
-        LOGGER.info(f"DB: {db}")
-        LOGGER.info(f"Collection: {collection}")
-        db[collection].insert_one(data)
-    except Exception as e:
-        LOGGER.error("Error inserting data into DocumentDB: {}".format(e))
+        collection = db[collection_name]
+        return collection
+    except ClientError as e:
+        print(f"Error retrieving collection: {e}")
         raise e
+
+
+def summarize_text_with_gptscript(text):
+    gpt = GPTScript()
+    return gpt.summarize(text)
+
+def pygptscript_summarize_collection(collection):
+    LOGGER.info("Summarizing collection using py gptscript")
+    text = ""
+    for document in collection:
+        text += json.dumps(document, indent=4) + "\n\n"
+    summary = summarize_text_with_gptscript(text)
+    return summary
 
 
 def handler(event, context):
     """
     AWS Lambda handler function.
     """
-    LOGGER.info("Running data-processing lambda function")
-    valid_event = check_event(event)
-    if not valid_event:
-        LOGGER.error("Invalid event data")
-        return
-    LOGGER.info("Event data: {}".format(event))
-    s3_object = event['Records'][0]['s3']['object']
-    bucket_name = event['Records'][0]['s3']['bucket']['name']
-    LOGGER.info("Processing data from S3 object: {}".format(s3_object))
+    LOGGER.info("Running gpt lambda function")
     parameters = get_db_connection_parameters()
-    data = process_data(s3_object, bucket_name)
     db_secret = get_secret("custodian-db")
     client = configure_docdb_client(parameters, db_secret)
-    insert_into_documentdb(client, data, parameters)
+    collection = get_docdb_collection(client, parameters['docdb_collection'])
+    openai_api_key = get_secret('openai-api-key')
+    if not openai_api_key:
+        LOGGER.error("OpenAI API key not found")
+    os.environ['OPENAI_API_KEY'] = openai_api_key['openai_api_key']
+    gpt_summary = pygptscript_summarize_collection(parameters['docdb_collection'])
+    LOGGER.info(f"Summary: {gpt_summary}")

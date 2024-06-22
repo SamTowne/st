@@ -27,6 +27,36 @@ resource "aws_lambda_function" "data-processing" {
   timeout     = 60
   memory_size = 128
   architectures = ["arm64"]
+  vpc_config {
+    subnet_ids         = ["subnet-9fee12d5", "subnet-1704d76f"]
+    security_group_ids = ["sg-490baa63"]
+  }
+  environment {
+    variables = {
+      AWS_SDK_LOAD_CONFIG = "1"# use vpc endpoints
+    }
+  }
+}
+
+resource "aws_lambda_function" "gpt" {
+  function_name = "custodian-gpt-lambda"
+  role          = aws_iam_role.lambda_role.arn
+
+  image_uri    = "${aws_ecr_repository.gpt.repository_url}:latest"
+  package_type = "Image"
+
+  timeout     = 60
+  memory_size = 128
+  architectures = ["arm64"]
+  vpc_config {
+    subnet_ids         = ["subnet-9fee12d5", "subnet-1704d76f"]
+    security_group_ids = ["sg-490baa63"]
+  }
+  environment {
+    variables = {
+      AWS_SDK_LOAD_CONFIG = "1"# use vpc endpoints
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "custodian-exec" {
@@ -36,5 +66,10 @@ resource "aws_cloudwatch_log_group" "custodian-exec" {
 
 resource "aws_cloudwatch_log_group" "data-proc" {
   name = "/aws/lambda/custodian-data-processing-lambda"
+  retention_in_days = 30
+}
+
+resource "aws_cloudwatch_log_group" "gpt" {
+  name = "/aws/lambda/custodian-gpt-lambda"
   retention_in_days = 30
 }

@@ -10,6 +10,12 @@ resource "aws_ssm_parameter" "docdb_collection" {
   value = "custodian-data"
 }
 
+resource "aws_ssm_parameter" "docdb_database" {
+  name  = "/custodian/docdb_database"
+  type  = "String"
+  value = "custodian"
+}
+
 resource "aws_ssm_parameter" "regions_parameter" {
   name  = "/custodian/config/regions"
   type  = "StringList"

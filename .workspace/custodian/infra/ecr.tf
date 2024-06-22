@@ -21,3 +21,7 @@ docker push 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-data-processi
 aws lambda update-function-code --region us-west-2 --function-name custodian-data-processing --image-uri 272773485930.dkr.ecr.us-west-2.amazonaws.com/custodian-ecr-repository:latest
 */
 }
+
+resource "aws_ecr_repository" "gpt" {
+  name = "gpt"
+}
