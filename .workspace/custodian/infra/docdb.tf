@@ -16,3 +16,9 @@ resource "aws_docdb_cluster" "docdb" {
   skip_final_snapshot     = true
   port                    = local.secret_value.port
 }
+
+resource "aws_docdb_cluster_instance" "cluster_instance" {
+  identifier         = "custodian-instance"
+  cluster_identifier = aws_docdb_cluster.docdb.id
+  instance_class     = "db.t3.medium"
+}

@@ -33,7 +33,7 @@ def get_secret(secret_name):
     Retrieve secret from AWS Secrets Manager.
     """
     try:
-        secretsmanager = boto3.client('secretsmanager', config=config)
+        secretsmanager = boto3.client('secretsmanager', config=config, endpoint_url="https://vpce-0f987146abda23807-mc1xxcx6.secretsmanager.us-west-2.vpce.amazonaws.com")
         response = secretsmanager.get_secret_value(SecretId=secret_name)
     except ClientError as e:
         LOGGER.error("Error retrieving secret: {}".format(e))
@@ -53,7 +53,7 @@ def get_db_connection_parameters():
     """
     path = '/custodian'
     parameters = {}
-    ssm = boto3.client('ssm', config=config)
+    ssm = boto3.client('ssm', config=config, endpoint_url="https://vpce-0bb5e785a9e819158-52puy6dc-us-west-2a.ssm.us-west-2.vpce.amazonaws.com")
     try:
         response = ssm.get_parameters_by_path(Path=path, WithDecryption=True)
         for param in response['Parameters']:
@@ -113,6 +113,9 @@ def insert_into_documentdb(client, data, parameters):
     try:
         LOGGER.info(f"Parameters: {parameters}")
         LOGGER.info(f"Data: {data}")
+        if not data:
+            LOGGER.error("No data to insert into DocumentDB")
+            return
         db = client['custodian']
         collection = parameters['docdb_collection']
         LOGGER.info(f"DB: {db}")
@@ -133,6 +136,7 @@ def handler(event, context):
         LOGGER.error("Invalid event data")
         return
     LOGGER.info("Event data: {}".format(event))
+    os.environ['AWS_EC2_METADATA_DISABLED'] = 'true'
     s3_object = event['Records'][0]['s3']['object']
     bucket_name = event['Records'][0]['s3']['bucket']['name']
     LOGGER.info("Processing data from S3 object: {}".format(s3_object))

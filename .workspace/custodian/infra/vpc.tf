@@ -15,3 +15,10 @@ resource "aws_vpc_endpoint" "secretsmanager_endpoint" {
   security_group_ids = ["sg-490baa63"]
   private_dns_enabled = true
 }
+
+resource "aws_vpc_endpoint" "s3_endpoint" {
+  vpc_id       = "vpc-1cd09664"
+  service_name = "com.amazonaws.us-west-2.s3"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids = ["rtb-70f2d10b"]
+}

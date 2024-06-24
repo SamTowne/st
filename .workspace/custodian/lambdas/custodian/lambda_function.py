@@ -86,11 +86,11 @@ def lambda_handler(event, context):
     account_id = get_account_id()
     os.environ['C7N_CACHE_DIR'] = '/tmp' # Set the cache directory for Cloud Custodian
     rule_name = event['rule_name']
+    regions = ["us-west-2"] # For testing purposes, to speed up execution
     for region in regions:
         output_path = f"s3://{bucket_name}/custodian-run-logs/account={account_id}/region={region}"
-    run_custodian(region, output_path, rule_name)
-    return 'Success'
-
+        run_custodian(region, output_path, rule_name)
+    return 200
 
 if __name__ == "__main__":
     # For local testing
