@@ -1,5 +1,6 @@
 resource "aws_ecr_repository" "repository" {
   name = "custodian-ecr-repository"
+  force_delete = true
 ##push commands
 /*
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 272773485930.dkr.ecr.us-west-2.amazonaws.com
@@ -12,6 +13,7 @@ aws lambda update-function-code --region us-west-2 --function-name custodian-exe
 
 resource "aws_ecr_repository" "data_processing_repository" {
   name = "custodian-data-processing"
+  force_delete = true
 ##push commands
 /*
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 272773485930.dkr.ecr.us-west-2.amazonaws.com
@@ -24,4 +26,5 @@ aws lambda update-function-code --region us-west-2 --function-name custodian-dat
 
 resource "aws_ecr_repository" "gpt" {
   name = "gpt"
+  force_delete = true
 }

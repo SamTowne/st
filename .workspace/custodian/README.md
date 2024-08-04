@@ -1,5 +1,7 @@
 # Custodian
 
+**project infra has been destroyed 8/2024**
+
 ## Data Collection
 - Configure Cloud Custodian with your policies
 - Set up Cloud Custodian to run on a schedule using CloudWatch Events

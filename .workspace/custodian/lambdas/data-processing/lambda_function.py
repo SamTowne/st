@@ -105,6 +105,22 @@ def configure_docdb_client(parameters, secret):
     return client
 
 
+def sanitize_document(document):
+    """
+    Recursively replace dots in field names of a document or nested documents.
+    """
+    if isinstance(document, list):
+        return [sanitize_document(item) for item in document]
+    elif isinstance(document, dict):
+        sanitized_document = {}
+        for key, value in document.items():
+            sanitized_key = key.replace('.', '_')
+            sanitized_document[sanitized_key] = sanitize_document(value)
+        return sanitized_document
+    else:
+        return document
+
+
 def insert_into_documentdb(client, data, parameters):
     """
     Insert the data into the specified DocumentDB collection.
@@ -144,4 +160,5 @@ def handler(event, context):
     data = process_data(s3_object, bucket_name)
     db_secret = get_secret("custodian-db")
     client = configure_docdb_client(parameters, db_secret)
-    insert_into_documentdb(client, data, parameters)
+    document = sanitize_document(data)
+    insert_into_documentdb(client, document, parameters)
