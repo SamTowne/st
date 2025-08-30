@@ -13,3 +13,5 @@ __pycache__/
 .terraform/
 .workspace-ignored/
 .coverage
+!make_workspace.py
+!Makefile

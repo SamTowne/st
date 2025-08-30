@@ -1,5 +1,6 @@
-- [ ] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
-- [ ] debug the sam-eval lambda, and try to make use of the SAM local dev features
+- [ ] get workspace makefile and script for fast workspace creation
+- [X] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
+- [X] debug the sam-eval lambda, and try to make use of the SAM local dev features
 - [X] continue the SAM tut https://catalog.workshops.aws/complete-aws-sam/en-US/module-3-manual-deploy/05-module-goals
 - [X] Choose a router, move to bridge mode with pi running pihole for dns and pivpn
     - Asus router running well
