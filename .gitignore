@@ -4,8 +4,13 @@
 !/brain/*
 !make_workspace.py
 !Makefile
-!/.workspace/
-!/.workspace/00-archive/
+!.pre-commit-config.yaml
+!requirements.in
+!requirements.txt
+!requirements.lock
+!.workspace/
+!.workspace/20250920-init/
+!.workspace/20250920-init/notes.md
 
 # Inside of wildcarded allowed directories, also ingore these items
 .venv

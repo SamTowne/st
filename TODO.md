@@ -1,4 +1,4 @@
-- [ ] build to learn MCP (Model Context Protocol) docker-based LLM consumption
+- [ ] build something simple and containerized that uses MCP (Model Context Protocol) for LLM consumption
 - [X] get workspace makefile and script for fast workspace creation
 - [X] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
 - [X] debug the sam-eval lambda, and try to make use of the SAM local dev features
