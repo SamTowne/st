@@ -1,5 +1,0 @@
-boto3~=1.34
-botocore~=1.34
-pymongo==4.6.3
-gptscript~=0.8.0
-httpx~=0.27.0
