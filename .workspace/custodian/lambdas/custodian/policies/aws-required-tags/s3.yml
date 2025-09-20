@@ -1,5 +1,0 @@
-policies:
-  - name: s3-tag-compliance
-    resource: s3
-    filters:
-      - "tag:Custodian": absent

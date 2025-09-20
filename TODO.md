@@ -1,4 +1,5 @@
-- [ ] get workspace makefile and script for fast workspace creation
+- [ ] build to learn MCP (Model Context Protocol) docker-based LLM consumption
+- [X] get workspace makefile and script for fast workspace creation
 - [X] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
 - [X] debug the sam-eval lambda, and try to make use of the SAM local dev features
 - [X] continue the SAM tut https://catalog.workshops.aws/complete-aws-sam/en-US/module-3-manual-deploy/05-module-goals
