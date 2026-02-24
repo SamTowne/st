@@ -1,6 +1,8 @@
+- [ ] code review [agentcore examples](https://github.com/awslabs/amazon-bedrock-agentcore-samples)
 - [ ] formae quickstart and init docs
-- [ ] vend aws sandbox, set up credentialling to do a PoC on formae
 - [ ] build something simple and containerized that uses MCP (Model Context Protocol) for LLM consumption
+- [X] vend aws sandbox
+- [X] read user guide for bedrock and bedrock agentcore
 - [X] copilot vscode quota reached, let's use the continue extension + ollama then continue with MCP, went with their recommended model llama3.1:8b first, auto complete worked fine but sending any requests for evaluation basically broke this macbook pro w only 8gb ram, it's too hungry. trying with qwen3:0.6b next, it's do-able
 - [X] get workspace makefile and script for fast workspace creation
 - [X] get custodian running on a schedule in aws account, to perform auto-deprovisionining based upon business directives and policies
